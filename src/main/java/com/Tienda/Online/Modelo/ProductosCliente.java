@@ -16,7 +16,7 @@ public class ProductosCliente {
 	@EmbeddedId
 	private ProductosClienteId id;
 	@Column(name = "cantidad", nullable = false)
-	private Integer cantidad;     
+	private Integer cantidad;  
 	@ManyToOne
 	@MapsId("productoId")
 	@JoinColumn(name = "fk_producto")

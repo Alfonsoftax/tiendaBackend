@@ -1,15 +1,10 @@
 package com.Tienda.Online.Modelo;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,7 +12,7 @@ import jakarta.persistence.Table;
 
 public class Clientes {
 
-	@jakarta.persistence.Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 

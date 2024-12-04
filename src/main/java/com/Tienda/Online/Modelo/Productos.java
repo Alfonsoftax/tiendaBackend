@@ -1,13 +1,10 @@
 package com.Tienda.Online.Modelo;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,17 +20,6 @@ public class Productos {
 
 	@Column(name = "precio")
 	private Integer precio;
-
-	
-//	@ManyToMany(mappedBy = "productos")
-//	private List<Pedido> pedidos;
-//	public List<Pedido> getPedidos() {
-//		return pedidos;
-//	}
-//
-//	public void setPedidos(List<Pedido> pedidos) {
-//		this.pedidos = pedidos;
-//	}
 
 	public Productos() {
 	}
