@@ -7,6 +7,7 @@ import com.Tienda.Online.Modelo.Productos;
 import com.Tienda.Online.dto.ClienteProductosDto;
 import com.Tienda.Online.dto.HistorialDto;
 
+//Se crea la interfaz TiendaService con los metodos listarTodosLosProductos, obtenerClientes, obtenerCarrito, aniadirCarrito, pagar, eliminarCarrito, obtenerHistorial
 public interface TiendaService {
 
 	public List<Productos> listarTodosLosProductos();

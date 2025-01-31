@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.Tienda.Online.Modelo.ProductosCliente;
 import com.Tienda.Online.Modelo.ProductosClienteId;
 
-
+//Repositorio en el que consultamos los productos de un cliente
 @Repository
 public interface ClienteProductoRepositorio extends JpaRepository<ProductosCliente, ProductosClienteId> {
 	@Query("select p.id.productoId from ProductosCliente p where p.id.clienteId = ?1")

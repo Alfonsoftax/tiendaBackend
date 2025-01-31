@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.Tienda.Online.Modelo.Historial;
 
-
+// Repositorio en el que consultamos el historial de un cliente
 @Repository
 public interface HistorialRepositorio extends JpaRepository<Historial, Long> {
 

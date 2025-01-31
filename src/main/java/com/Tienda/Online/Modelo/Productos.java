@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//Entidad de la tabla productos
 @Entity
 @Table(name = "productos")
 public class Productos {

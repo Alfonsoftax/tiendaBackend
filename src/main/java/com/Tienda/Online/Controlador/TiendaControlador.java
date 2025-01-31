@@ -17,35 +17,38 @@ import com.Tienda.Online.Modelo.Productos;
 import com.Tienda.Online.Service.TiendaService;
 import com.Tienda.Online.dto.ClienteProductosDto;
 import com.Tienda.Online.dto.HistorialDto;
-
+// COntrolador para controlar las acciones que realiza el usuario
 @RestController 
 @RequestMapping("/api/v1/tienda")
 public class TiendaControlador {
 
 	@Autowired
 	private TiendaService tiendaService;
-
+	// Metodo para listar todos los productos
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("")
 	public List<Productos> listarTodosLosProductos() {
 		return this.tiendaService.listarTodosLosProductos();
 	}
+	// Metodo para obtener los clientes
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/obtenerCliente")
 	public Clientes obtenerClientes() {
 		return this.tiendaService.obtenerClientes();
 	}
+	// Metodo para obtener el carrito
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/obtenerCarrito/{idCliente}")
 	public List<Productos> obtenerCarrito(@PathVariable Long idCliente) {
 		return this.tiendaService.obtenerCarrito(idCliente);
 	}
+	// Metodo para añadir productos al carrito
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/aniadirCarrito/{idProducto}/{idCliente}")
 	public void aniadirCarrito(@PathVariable Long idProducto, @PathVariable Long idCliente) {
 		this.tiendaService.aniadirCarrito(idProducto, idCliente);
 	}
-	
+	// Metodo para pagar los productos del carrito
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/pagar")
 	public Long pagar(@RequestBody  ClienteProductosDto clienteProductos) {

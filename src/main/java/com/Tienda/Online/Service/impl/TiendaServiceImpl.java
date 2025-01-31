@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,7 @@ import com.Tienda.Online.dto.ClienteProductosDto;
 import com.Tienda.Online.dto.HistorialDto;
 import com.Tienda.Online.dto.ProductosDto;
 
+//Se crea la clase TiendaServiceImpl que implementa la interfaz TiendaService
 @Service
 public class TiendaServiceImpl implements TiendaService {
 
@@ -48,7 +48,7 @@ public class TiendaServiceImpl implements TiendaService {
 		return repositorio.findAll();
 
 	}
-
+//Metodo para obtener los clientes
 	@Override
 	public Clientes obtenerClientes() {
 		return clienteRepositorio.findAll().get(0);
@@ -56,13 +56,16 @@ public class TiendaServiceImpl implements TiendaService {
 
 	@Override
 	public List<Productos> obtenerCarrito(Long idCliente) {
+		//Buscamos los productos que tiene el cliente en el carrito
 		List<Long> idProductos = this.clienteProductoRepositorio.findIdProducto(idCliente);
+		//Buscamos los productos por el id
 		List<Productos> productos = this.repositorio.findAllById(idProductos);
 		return productos;
 	}
 
 	@Override
 	public void aniadirCarrito(Long idProducto, Long idCliente) {
+		//Buscamos el producto y el cliente por el id
 		Optional<Productos> producto = this.repositorio.findById(idProducto);
 		Optional<Clientes> cliente  = clienteRepositorio.findById(idCliente);
 		ProductosCliente productoCliente = new ProductosCliente();
@@ -72,11 +75,13 @@ public class TiendaServiceImpl implements TiendaService {
 		productoClienteId.setClienteId(cliente.get().getId());
 		productoClienteId.setProductoId(idProducto);
 		productoCliente.setId(productoClienteId);
+		//Guardamos el producto en el carrito
 		this.clienteProductoRepositorio.save(productoCliente);
 	}
 
 	@Override
 	public Long pagar(ClienteProductosDto clienteProductos) {
+		//Guardamos el historial de la compra
 		Historial historial = new Historial();
 		historial.setCliente(new Clientes());
 		historial.getCliente().setId(clienteProductos.getCliente().getId());
@@ -92,7 +97,7 @@ public class TiendaServiceImpl implements TiendaService {
             historial.setId(null);
     		this.historialRepositorio.save(historial);
 		}
-		
+		//Eliminamos los productos del carrito
 		this.clienteProductoRepositorio.deleteAll();
 		return PAGADO;
 	}
@@ -113,10 +118,11 @@ public class TiendaServiceImpl implements TiendaService {
 
 	@Override
 	public List<HistorialDto> obtenerHistorial(Long idCliente) {
+		//Buscamos el historial por el id del cliente logueado
 	    List<Historial> historial = this.historialRepositorio.findAllByIdCliente(idCliente);
 
 	    Map<Long, HistorialDto> historialDtoMap = new HashMap();
-
+	    // Mapeamos el historial para devolverlo junto a sus pedidos
 	    for (Historial h : historial) {
 	        HistorialDto hdto = historialDtoMap.computeIfAbsent(
 	            h.getNumeroPedido(),

@@ -8,9 +8,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
+//Entidad relacional de la tabla productos_cliente
 @Entity
 @Table(name = "productos_cliente")
-
 public class ProductosCliente {
 
 	@EmbeddedId
