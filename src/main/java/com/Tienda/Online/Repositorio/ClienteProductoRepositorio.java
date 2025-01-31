@@ -13,7 +13,7 @@ import com.Tienda.Online.Modelo.ProductosClienteId;
 
 @Repository
 public interface ClienteProductoRepositorio extends JpaRepository<ProductosCliente, ProductosClienteId> {
-	@Query("select p.id.productoId from ProductosCliente p")
-	List<Long> findIdProducto();
+	@Query("select p.id.productoId from ProductosCliente p where p.id.clienteId = ?1")
+	List<Long> findIdProducto(Long idCliente);
 
 }

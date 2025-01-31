@@ -26,15 +26,27 @@ public class Clientes {
 	private String email;
 	
 
+	@Column(name = "password", length = 15, unique = true)
+	private String password;
+
 	public Clientes() {
 	}
 
-	public Clientes(long id, String nombre, String apellido, String email) {
+	public Clientes(long id, String nombre, String apellido, String email, String password) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+		this.password = password;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public long getId() {
